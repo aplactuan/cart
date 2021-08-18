@@ -1,7 +1,5 @@
 <?php
 
-Route::get('/', function() {
-   $categories = \App\Models\Category::parents()->ordered()->get();
+use App\Http\Controllers\Categories\CategoryController;
 
-   return $categories;
-});
+Route::resource('categories', CategoryController::class);
