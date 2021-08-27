@@ -21,7 +21,9 @@ class Scoper
             if (!$scope instanceof Scope) {
                 continue;
             }
-            $scope->apply($builder, $this->request->get($key));
+            if ($this->request->has($key)) {
+                $scope->apply($builder, $this->request->get($key));
+            }
         }
 
         return $builder;

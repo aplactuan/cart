@@ -16,13 +16,13 @@ class Product extends Model
         return 'slug';
     }
 
-    public function scopeWithScopes(Builder $builder, $scopes = [])
-    {
-        return (new Scoper(request()))->apply($builder, $scopes);
-    }
-
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function scopeWithScopes(Builder $builder, $scopes = [])
+    {
+        return (new Scoper(request()))->apply($builder, $scopes);
     }
 }
