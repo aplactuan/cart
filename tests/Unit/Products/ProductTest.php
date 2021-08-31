@@ -23,7 +23,7 @@ class ProductTest extends TestCase
         $this->assertInstanceOf(Category::class, $product->categories->first());
     }
 
-    public function test_it_has_variations()
+    public function test_it_has_many_variations()
     {
         $product = Product::factory()->hasVariations(2)->create();
 
