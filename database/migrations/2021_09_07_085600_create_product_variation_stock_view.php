@@ -50,6 +50,6 @@ class CreateProductVariationStockView extends Migration
      */
     public function down()
     {
-        DB::statement("DROP VIEW if EXISTS product_variation_stock_view");
+        DB::statement("DROP VIEW product_variation_stock_view");
     }
 }
