@@ -87,25 +87,18 @@ class ProductVariationTest extends TestCase
     {
         $variation = ProductVariation::factory()->create();
 
-        $variation->stocks()->save(
-            Stock::factory()->create([
-                'quantity' => $quantity = 5
-            ])
-        );
+       Stock::factory()->create([
+           'quantity' => $quantity = 5,
+           'product_variation_id' => $variation->id
+       ]);
 
         $this->assertEquals($variation->stock->first()->pivot->stock, $quantity);
     }
 
     public function test_it_has_in_stock_pivot_within_stock_information()
     {
-        $variation = ProductVariation::factory()->create();
+        $variation = ProductVariation::factory()->hasStocks()->create();
 
-        $variation->stocks()->save(
-            Stock::factory()->create([
-                'quantity' => $quantity = 5
-            ])
-        );
-
-        $this->assertTrue($variation->stock->first()->pivot->in_stock);
+        $this->assertTrue($variation->stock->first()->inStock());
     }
 }
